@@ -18,10 +18,7 @@ for name in glob.iglob('images/**/*.png', recursive=True):
     result = cursor.fetchall()
     used_by = []
     for entry, name, subname, scale in result:
-        if subname is None:
-            subname = ""
-
-        used_by.append({"entry": entry, "name": name, "subname": subname, "scale": scale or 1.0})
+        used_by.append({"entry": entry, "name": name, "subname": subname or '', "scale": scale or 1.0})
     images.append({"id": id, "path": dir, "used": len(result) > 0, "used_by": used_by})
 
 if len(images) > 0:
